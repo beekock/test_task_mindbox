@@ -6,13 +6,13 @@ import { observer } from 'mobx-react-lite';
 const TaskComponent = observer(({ task }: { task: Task }) => {
   const { toggleCompleted } = TaskStore;
   return (
-    <div className="items-center flex py-5 px-9 h-10">
+    <div className="items-center flex py-5 h-10 md:px-7 px-4">
       <div
         className={clsx(
           task.completed
             ? 'border-completed border-opacity-100 opacity 100'
             : 'border-slate-400 border-opacity-50 opacity-50',
-          'w-8 h-8 rounded-full border   mr-7 cursor-pointer flex justify-center items-center hover:bg-slate-300 transition-colors',
+          'md:w-8 md:h-8 w-5 h-5 rounded-full border mr-3 md:mr-5 cursor-pointer flex justify-center items-center hover:bg-slate-300 transition-colors',
         )}
         onClick={() => toggleCompleted(task)}
         data-testid="checkbox">
@@ -21,14 +21,14 @@ const TaskComponent = observer(({ task }: { task: Task }) => {
           alt="check-ico"
           className={clsx(
             task.completed ? 'opacity-100' : 'opacity-0',
-            'w-5 h-5 hover:opacity-70 transition-opacity',
+            'w-5 h-5 hover:opacity-70 transition-all duration-200',
           )}
         />
       </div>
       <span
         className={clsx(
           task.completed ? 'text-text-done line-through' : '',
-          'text-center text-xl',
+          'text-center md:text-xl text-lg duration-200 transition-colors flex',
         )}>
         {task.title}
       </span>

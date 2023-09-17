@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import TaskComponent from './TaskComponent';
 import TaskInput from './TaskInput';
 import TaskSort from './TaskSort';
@@ -8,12 +7,11 @@ import React from 'react';
 
 const TodoList = observer(() => {
   const { filteredTasks, isOpen } = TaskStore;
-  const parent = useRef(null);
   return (
-    <div className="shadow-md mx-auto ">
+    <div className="shadow-md mx-auto transition-transform duration-500 ease-in">
       <TaskInput />
       {isOpen && (
-        <div ref={parent}>
+        <>
           {' '}
           {filteredTasks.map((task: Task) => (
             <React.Fragment key={task.title}>
@@ -21,7 +19,7 @@ const TodoList = observer(() => {
             </React.Fragment>
           ))}
           <TaskSort />
-        </div>
+        </>
       )}
     </div>
   );

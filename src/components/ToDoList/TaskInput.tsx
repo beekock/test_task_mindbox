@@ -19,20 +19,20 @@ const TaskInput: React.FC = observer(() => {
   };
 
   return (
-    <div className="mt-5 p-10 h-10 flex items-center justify-start mx-auto focus:outline-none focus-visible:outline-none ">
+    <div className="my-5 md:px-9 p-5 h-10 flex items-center justify-start mx-auto focus:outline-none focus-visible:outline-none ">
       <img
         src={arrow_ico}
         alt="arrow-ico"
         className={clsx(
           isOpen ? '' : 'rotate-180',
-          'w-4 h-4 mr-5 cursor-pointer transition-transform',
+          'w-4 h-4 md:mr-5 mr-1 cursor-pointer transition-transform',
         )}
         onClick={() => toggleOpen()}
       />
       <input
         type="text"
         placeholder="What needs to be done?"
-        className="bg-bg-primary px-2 text-2xl"
+        className="bg-bg-primary px-2 md:text-2xl text-xl"
         onChange={handleInputChange}
         onKeyDown={handleSubmit}
         value={inputValue}
