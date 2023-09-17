@@ -19,7 +19,7 @@ const TaskInput: React.FC = observer(() => {
   };
 
   return (
-    <div className="my-5 md:px-9 p-5 h-10 flex items-center justify-start mx-auto focus:outline-none focus-visible:outline-none ">
+    <div className="my-5 md:px-9 p-3 flex items-center justify-start mx-auto focus:outline-none focus-visible:outline-none ">
       <img
         src={arrow_ico}
         alt="arrow-ico"

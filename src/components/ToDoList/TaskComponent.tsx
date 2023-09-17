@@ -12,7 +12,7 @@ const TaskComponent = observer(({ task }: { task: Task }) => {
           task.completed
             ? 'border-completed border-opacity-100 opacity 100'
             : 'border-slate-400 border-opacity-50 opacity-50',
-          'md:w-8 md:h-8 w-5 h-5 rounded-full border mr-3 md:mr-5 cursor-pointer flex justify-center items-center hover:bg-slate-300 transition-colors',
+          'md:w-8 md:h-8 w-5 h-5 py-[4x] rounded-full border mr-3 md:mr-5 cursor-pointer flex justify-center items-center hover:bg-slate-300 transition-all',
         )}
         onClick={() => toggleCompleted(task)}
         data-testid="checkbox">
@@ -21,14 +21,14 @@ const TaskComponent = observer(({ task }: { task: Task }) => {
           alt="check-ico"
           className={clsx(
             task.completed ? 'opacity-100' : 'opacity-0',
-            'w-5 h-5 hover:opacity-70 transition-all duration-200',
+            'w-5 h-5 hover:opacity-70 transition-all duration-200 select-none',
           )}
         />
       </div>
       <span
         className={clsx(
           task.completed ? 'text-text-done line-through' : '',
-          'text-center md:text-xl text-lg duration-200 transition-colors flex',
+          'text-center md:text-xl text-lg duration-200 transition-colors flex select-none',
         )}>
         {task.title}
       </span>

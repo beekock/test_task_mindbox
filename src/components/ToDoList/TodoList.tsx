@@ -8,13 +8,12 @@ import React from 'react';
 const TodoList = observer(() => {
   const { filteredTasks, isOpen } = TaskStore;
   return (
-    <div className="shadow-md mx-auto transition-transform duration-500 ease-in">
+    <div className="shadow-xl mx-auto transition-transform duration-500 ease-in">
       <TaskInput />
       {isOpen && (
         <>
-          {' '}
-          {filteredTasks.map((task: Task) => (
-            <React.Fragment key={task.title}>
+          {filteredTasks.map((task: Task, id) => (
+            <React.Fragment key={`${task.title}-${id}`}>
               <TaskComponent task={task} />
             </React.Fragment>
           ))}

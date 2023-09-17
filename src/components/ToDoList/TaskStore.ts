@@ -6,33 +6,31 @@ export type Task = {
 };
 export interface ITaskStore {
   tasks: Task[];
-  filter: string;
+  filter: FilterType;
   isOpen: boolean;
   addTask: (title: string) => void;
   toggleOpen: () => void;
   filteredTasks: Task[];
-  setFilter: (filter: string) => void;
+  setFilter: (filter: FilterType) => void;
   clearCompleted: () => void;
   toggleCompleted: (task: Task) => void;
 }
+export type FilterType = 'All' | 'Completed' | 'Active';
+
 export class TaskStore {
   @observable tasks: Task[] = [
     { title: 'Тестовое задание', completed: false },
     { title: 'Прекрасный код', completed: true },
     { title: 'Покрытие тестами', completed: false },
   ];
-  @observable filter: string = 'All';
+  @observable filter: FilterType = 'All';
   @observable isOpen: boolean = true;
 
   constructor() {
     makeObservable(this);
   }
-  @action addTask = (title: string) => {
-    this.tasks = [...this.tasks, { title, completed: false }];
-  };
-  @action toggleOpen = () => {
-    this.isOpen = !this.isOpen;
-  };
+
+  // computeds
   @computed get filteredTasks() {
     switch (this.filter) {
       case 'All':
@@ -45,17 +43,23 @@ export class TaskStore {
         return this.tasks;
     }
   }
-  @action setFilter = (filter: string) => {
+
+  // actions
+  @action addTask = (title: string) => {
+    this.tasks = [...this.tasks, { title, completed: false }];
+  };
+  @action toggleOpen = () => {
+    this.isOpen = !this.isOpen;
+  };
+
+  @action setFilter = (filter: FilterType) => {
     this.filter = filter;
   };
   @action clearCompleted = () => {
     this.tasks = this.tasks.filter((task) => !task.completed);
   };
   @action toggleCompleted = (task: Task) => {
-    const index = this.tasks.findIndex((val) => task.title === val.title);
-    if (index !== -1) {
-      this.tasks[index].completed = !this.tasks[index].completed;
-    }
+    task.completed = !task.completed;
   };
 }
 
